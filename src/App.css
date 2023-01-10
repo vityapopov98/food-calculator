@@ -1,6 +1,6 @@
-.App {
-  text-align: center;
-}
+/* .App { */
+  /* text-align: center; */
+/* } */
 
 .App-logo {
   height: 40vmin;
@@ -35,4 +35,38 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.foodInput{
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px #282c34 solid;
+  margin: 4px
+  ;
+}
+.foodBtn{
+  background-color: rgb(255, 221, 0);
+  padding: 10px;
+  border-radius: 4px;
+  border: none;
+}
+.foodCards{
+  padding: 16px;
+  margin: 16px;
+  background-color: #ffffff;
+  box-shadow: 0px 4px 10px rgba(172, 172, 172, 0.162);
+  border-radius: 16px;
+}
+.foodCards-header{
+  /* color: black; */
+  text-align: left;
+  margin: 0 0 8px
+  ;
+}
+.foodCards-description{
+  color: #7a7c80;
+}
+.container {
+  width: 80%;
+  margin: auto;
 }
