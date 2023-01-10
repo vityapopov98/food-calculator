@@ -202,8 +202,9 @@ export default function (props) {
       <div
         style={{
           display: "flex",
-          flexDirection: "column",
-          width: "50%",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          width: "100%",
           margin: "auto",
         }}
       >

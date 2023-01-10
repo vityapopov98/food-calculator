@@ -53,9 +53,11 @@
 .foodCards{
   padding: 16px;
   margin: 16px;
-  background-color: #ffffff;
+  background-color: #fdfdfd;
   box-shadow: 0px 4px 10px rgba(172, 172, 172, 0.162);
   border-radius: 16px;
+  border: 1px solid #e4e7ed;
+  min-width: 200px;
 }
 .foodCards-header{
   /* color: black; */
@@ -69,4 +71,15 @@
 .container {
   width: 80%;
   margin: auto;
+}
+.navButtons{
+  padding: 12px;
+  border: none;
+  background: none;
+  font-weight: 700;
+  color: rgb(255, 204, 0);
+  font-size: 18px;
+}
+.navButtons:hover{
+  color: rgb(234, 187, 0);
 }

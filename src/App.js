@@ -3,27 +3,48 @@ import "./App.css";
 import Products from "./components/Products";
 import Recepies from "./components/Recepies";
 import User from "./components/User";
+import { useState } from "react";
 
 function App() {
+  const [currentTab, setCurrentTab] = useState("dish"); // products | users
+
   return (
     <div className="App container">
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
-      <Products />
-      <Recepies />
-      <User />
+      <button
+        style={{ paddingLeft: "0px" }}
+        className="navButtons"
+        onClick={() => {
+          setCurrentTab("dish");
+        }}
+      >
+        Dish
+      </button>
+      <button
+        style={{ margin: "16px" }}
+        className="navButtons"
+        onClick={() => {
+          setCurrentTab("products");
+        }}
+      >
+        Products
+      </button>
+      <button
+        style={{ margin: "16px" }}
+        className="navButtons"
+        onClick={() => {
+          setCurrentTab("users");
+        }}
+      >
+        Users
+      </button>
+
+      {currentTab === "dish" ? (
+        <Recepies />
+      ) : currentTab === "products" ? (
+        <Products />
+      ) : (
+        <User />
+      )}
     </div>
   );
 }

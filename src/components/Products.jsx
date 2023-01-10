@@ -17,6 +17,34 @@ export default function (props) {
       carbs: 533535,
       protein: 4444,
     },
+    {
+      name: "test",
+      calories: 4444,
+      fats: 5555,
+      carbs: 533535,
+      protein: 4444,
+    },
+    {
+      name: "test2",
+      calories: 4444,
+      fats: 5555,
+      carbs: 533535,
+      protein: 4444,
+    },
+    {
+      name: "test",
+      calories: 4444,
+      fats: 5555,
+      carbs: 533535,
+      protein: 4444,
+    },
+    {
+      name: "test2",
+      calories: 4444,
+      fats: 5555,
+      carbs: 533535,
+      protein: 4444,
+    },
   ]);
 
   const [createProductName, setCreateProduct] = useState("");
@@ -139,8 +167,9 @@ export default function (props) {
       <div
         style={{
           display: "flex",
-          flexDirection: "column",
-          width: "50%",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          width: "100%",
           margin: "auto",
         }}
       >
