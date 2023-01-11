@@ -83,3 +83,11 @@
 .navButtons:hover{
   color: rgb(234, 187, 0);
 }
+.headerSelect{
+  padding: 16px;
+  border: none;
+  font-weight: 700;
+  font-size: 18px;
+  float: right;
+  margin: 12px;
+}

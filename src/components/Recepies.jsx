@@ -4,35 +4,21 @@ import "../App.css";
 export default function (props) {
   const [dishes, setDishes] = useState([
     {
-      name: "test",
-      products: [
-        {
-          name: "test",
-          calories: 4444,
-          fats: 5555,
-          carbs: 533535,
-          protein: 4444,
-        },
-        {
-          name: "test",
-          calories: 4444,
-          fats: 5555,
-          carbs: 533535,
-          protein: 4444,
-        },
-      ],
-      date: "дата время",
-      user: "testname",
-      product_weight: [
-        { "названи продукта": "вес продукта" },
-        { "название продукта": "вес продукта" },
-        { "название продукта": "вес продукта" },
-      ],
+      dish_name: "пицца",
+      product_weight: {
+        помидоры: 0.2,
+        огурцы: 0.2,
+      },
+      date: "2016-11-09T10:30:00",
+      sum_calories: 4.6000000000000005,
+      sum_fats: 0.0,
+      sum_carbs: 0.6000000000000001,
+      sum_protein: 0.2,
     },
   ]);
 
   const [createDishName, setCreateDishName] = useState("");
-  const [user, setUser] = useState("");
+  const [date, setDate] = useState("");
   const [dishProducts, setDishProducts] = useState([]);
 
   const [availableProducts, setAvailableProducts] = useState([
@@ -52,9 +38,25 @@ export default function (props) {
     },
   ]);
 
+  const renderProductWeight = (productWeight) => {
+    const pwJSX = [];
+    for (const key in productWeight) {
+      if (Object.hasOwnProperty.call(productWeight, key)) {
+        const element = productWeight[key];
+        console.log("pwpwppw", key, element);
+        pwJSX.push(
+          <p>
+            {key}: {element}
+          </p>
+        );
+      }
+    }
+    return pwJSX;
+  };
+
   useEffect(() => {
     //Загрузка из Бд
-    fetch("/cc/dishes")
+    fetch("/dishes")
       .then((res) => {
         console.log("GET Recepies res", res);
         return res.json();
@@ -67,7 +69,23 @@ export default function (props) {
       .catch((e) => {
         console.log("error:", e);
       });
+    getProducts();
   }, []);
+
+  const getProducts = () => {
+    fetch("/products")
+      .then((res) => {
+        console.log("getProducts res", res);
+        return res.json();
+      })
+      .then((data) => {
+        console.log("getProducts data", data);
+        //setAvailableProducts(data)
+      })
+      .catch((e) => {
+        console.log("error: ", e);
+      });
+  };
 
   const saveDish = () => {
     alert("saving");
@@ -79,14 +97,14 @@ export default function (props) {
 
     const dataToSave = {
       name: createDishName,
-      data: new Date(),
-      user: user,
+      data: date,
+      user: props.user,
       product_weight: productWeight,
     };
 
-    console.log("saveProduct", "/cc/products", dataToSave);
+    console.log("saveProduct", "/products", dataToSave);
 
-    fetch("/cc/products", {
+    fetch("/products", {
       method: "POST",
       body: JSON.stringify(dataToSave),
     })
@@ -122,11 +140,11 @@ export default function (props) {
         <input
           className="foodInput"
           type="text"
-          value={user}
-          placeholder="User"
+          value={date}
+          placeholder="Date"
           onChange={(e) => {
             console.log("event", e.target.value);
-            setUser(e.target.value);
+            setDate(e.target.value);
           }}
         />
 
@@ -208,12 +226,12 @@ export default function (props) {
           margin: "auto",
         }}
       >
-        {dishes.map((prod) => {
+        {dishes.map((dish) => {
           return (
             <div className="foodCards">
-              <h3 className="foodCards-header">{prod.name}</h3>
+              {/* <h3 className="foodCards-header">{dish.name}</h3> */}
               {/* {JSON.stringify(prod)} */}
-              <p>
+              {/* <p>
                 {" "}
                 <span className="foodCards-description">Calories:</span>{" "}
                 {prod.calories}
@@ -228,7 +246,52 @@ export default function (props) {
               <p>
                 <span className="foodCards-description">Protein:</span>{" "}
                 {prod.protein}
-              </p>
+              </p> */}
+              <h3 className="foodCards-header">{dish.dish_name}</h3>
+              <p>{dish.date}</p>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  width: "100%",
+                }}
+              >
+                <div
+                  style={{
+                    width: "50%",
+                    borderRight: "1px solid #e4e7ed",
+                    marginRight: "16px",
+                  }}
+                >
+                  {renderProductWeight(dish.product_weight)}
+                </div>
+                <div style={{ width: "50%" }}>
+                  <p>
+                    Calories:{" "}
+                    <span className="foodCards-description">
+                      {dish.sum_calories}
+                    </span>
+                  </p>
+                  <p>
+                    Fats:{" "}
+                    <span className="foodCards-description">
+                      {dish.sum_fats}
+                    </span>
+                  </p>
+                  <p>
+                    Carbs:{" "}
+                    <span className="foodCards-description">
+                      {dish.sum_carbs}
+                    </span>
+                  </p>
+                  <p>
+                    Protein:{" "}
+                    <span className="foodCards-description">
+                      {dish.sum_protein}
+                    </span>
+                  </p>
+                </div>
+              </div>
             </div>
           );
         })}

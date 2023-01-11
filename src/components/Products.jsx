@@ -55,7 +55,7 @@ export default function (props) {
 
   useEffect(() => {
     // Загрузка из Бд
-    fetch("/cc/products")
+    fetch("/products")
       .then((res) => {
         console.log("GET Products res", res);
         return res.json();
@@ -80,9 +80,9 @@ export default function (props) {
       carbs: createProductCarbs,
       protein: createProductProtein,
     };
-    console.log("saveProduct", "/cc/products", dataToSave);
+    console.log("saveProduct", "/products", dataToSave);
 
-    fetch("/cc/products", {
+    fetch("/products", {
       method: "POST",
       body: JSON.stringify(dataToSave),
     })

@@ -19,19 +19,21 @@ export default function (props) {
       .then((data) => {
         console.log("getUsers data", data);
         // setUsers(data)
+        props.setAllUsers([{ name: "testuser" }]);
       })
       .catch((e) => {
         console.log("error:", e);
         setUsers([]);
+        props.setAllUsers([{ name: "testuser" }]);
       });
   };
 
   const saveUser = () => {
-    console.log("saveUser", "/cc/users", {
+    console.log("saveUser", "/users", {
       name: createdUserName,
     });
 
-    fetch("/cc/users", {
+    fetch("/users", {
       method: "POST",
       body: JSON.stringify({ name: createdUserName }),
     })
