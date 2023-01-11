@@ -56,7 +56,7 @@ export default function (props) {
 
   useEffect(() => {
     //Загрузка из Бд
-    fetch("/dishes")
+    fetch(`/dishes?user=${props.user}&date=${date}`)
       .then((res) => {
         console.log("GET Recepies res", res);
         return res.json();
@@ -97,7 +97,7 @@ export default function (props) {
 
     const dataToSave = {
       name: createDishName,
-      data: date,
+      date: date,
       user: props.user,
       product_weight: productWeight,
     };

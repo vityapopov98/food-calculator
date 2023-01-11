@@ -91,7 +91,7 @@ function App() {
         <Recepies user={currentUser} />
       ) : currentTab === "products" ? (
         <Products />
-      ) : currentTab === "user" ? (
+      ) : currentTab === "users" ? (
         <User />
       ) : (
         <Calc user={currentUser} />
